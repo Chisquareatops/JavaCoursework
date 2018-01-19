@@ -1,0 +1,120 @@
+/**
+ * A class to describe an examination room, defined by how many minutes that room
+ * has been in use and whether it is currently in use.
+ * @param <E>
+ */
+public class ExamRoom<E extends Comparable<E>> implements Comparable<E> {
+
+	private double inUseTime; // time in minutes that the room has been used for examinations
+	private int patientNum; // the total number of patients treated in this room
+	private int roomIdent; // a flag specifying whether the room is currently in use
+	private double departureTime; // the time at which a patient will be departing
+
+	/**
+	 * Creates an examination room; no characteristics are specified by the user
+	 * @param inUseTime time in minutes that the room has been used for examinations
+	 * @param inUse a flag specifying whether the room is currently in use
+	 */
+	public ExamRoom() {
+		this.inUseTime = 0;
+		this.patientNum = 0;
+		this.inUseTime = 0;
+	}
+
+	/**
+	 * Returns the time the room has been in use (in minutes)
+	 * @return inUseTime, the in-use time (in minutes)
+	 */
+	public double getInUseTime() {
+		return this.inUseTime;
+	}
+
+	/**
+	 * Sets the time the room has been in use (in minutes)
+	 * @param inUseTime, the in-use time (in minutes)
+	 */
+	public void setInUseTime(double inUseTime) {
+		this.inUseTime = inUseTime;
+	}
+	
+	/**
+	 * Sets the departure time of the room (the time at which it will next be available)
+	 * @param newDepartureTime, the departure time of the room
+	 */
+	public void setDepartureTime(double newDepartureTime) {
+		this.departureTime = newDepartureTime;
+	}
+	
+	/**
+	 * Returns the departure time (in minutes)
+	 * @return this.departureTime, the departure time (in minutes)
+	 */
+	public double getDepartureTime() {
+		return this.departureTime;
+	}
+	
+	/**
+	 * Returns total number of patients treated in this room
+	 * @return patientNum, total number of patients treated in this room
+	 */
+	public int getPatientNum() {
+		return this.patientNum;
+	}
+	
+	/**
+	 * Sets the number of patients treated in the room
+	 * @param newPatientNum, the number of patients treated in this room
+	 */
+	public void setPatientNum(int newPatientNum) {
+		this.patientNum = newPatientNum;
+	}
+	
+	/**
+	 * Returns whether or not the room is currently in use
+	 * @return inUse, whether the room is in use
+	 */
+	public int getIdent() {
+		return this.roomIdent;
+	}
+	
+	/**
+	 * Sets the identified of the room, which will be a number
+	 * @return newIdent, a number which identifies the room
+	 */
+	public void setIdent(int newIdent) {
+		this.roomIdent = newIdent;
+	}
+	
+	/**
+	 * Compares this object to another ExamRoom object based on time in use
+	 * @param o, an object
+	 * @return 0, 1, or -1, an int specifying the comparison between this ExamRoom and the passed ExamRoom
+	 */
+	public int compareTo(E o) throws IllegalArgumentException{
+		if (o != null && o.getClass() == this.getClass()) { // can only be compared to other rooms
+			ExamRoom<?> e = (ExamRoom<?>) o; // cast the passed object to an ExamRoom after checking its class
+			if (this.inUseTime < e.getInUseTime()) { // if this room has been in use less than the passed room, this room is 'greater than'
+				return 1;
+			}
+			else if (this.inUseTime > e.getInUseTime()) { //if this room has been in use more, it is 'less than'
+				return -1;
+			}
+			else { //if the in-use times are equal, the rooms are equal
+				return 0;
+			}
+		}
+		else {
+			throw new IllegalArgumentException();
+		}
+		
+	}
+	
+	/**
+	 * Prints the fields of this ExamRoom in a formatted way
+	 * @return string a String of the important fields in this ExamRoom
+	 */
+	public String toString() {
+		return "room number: " + this.getIdent() + ", in use time: " + this.getInUseTime();
+	}
+
+}

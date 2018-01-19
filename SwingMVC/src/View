@@ -1,0 +1,22 @@
+/**
+ * Interface implemented by Viewer objects and TextViewer objects.
+ * Specifies the information needed in a Viewer or TextViewer object for a DrawingModel object to interact with it.
+ * 
+ * @author H Ertman
+ */
+
+
+public interface View {
+	
+	/**
+	 * updates a view with the data in a connected model
+	 */	
+	public void update();
+
+	/**
+	 * connects the View to a DrawingModel object
+	 */	
+	public void connect(DrawingModel drawingModel);
+
+
+}
